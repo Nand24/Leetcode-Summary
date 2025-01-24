@@ -13,12 +13,11 @@ public:
         vector<int> colfreq(colcnt, 0);
         for (int i = 0; i < arr.size(); i++) {
             int val = arr[i];
-           int row= positions[val].first ;
-           int col= positions[val].second ;
+            int row = positions[val].first;
+            int col = positions[val].second;
             ++rowfreq[row];
             ++colfreq[col];
-            if(rowfreq[row]== colcnt || colfreq[col]==rowcnt)
-            {
+            if (rowfreq[row] == colcnt || colfreq[col] == rowcnt) {
                 return i;
             }
         }
