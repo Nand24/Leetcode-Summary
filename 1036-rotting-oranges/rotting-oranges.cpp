@@ -39,7 +39,7 @@ public:
         {
             for(int j=0;j<c;j++)
             {
-                  if(grid[i][j]==1 && visited[i][j]==0)
+                  if(grid[i][j]==1 && visited[i][j]!=2)
                   {
                     return -1;
                   }
