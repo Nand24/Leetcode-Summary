@@ -3,16 +3,17 @@ public:
     bool lemonadeChange(vector<int>& bills) {
         int tencount=0;
         int fivecnt=0;
-      for(int i=0;i<bills.size();i++)
+      for(auto &it:bills)
       {
-        if(bills[i]==10)
+        if(it==5) fivecnt++;
+        if(it==10)
         {
             tencount++;
             if(fivecnt>0)
             fivecnt--;
             else return false;
         }
-        if(bills[i]==20)
+        if(it==20)
         {
             if(tencount>0 && fivecnt>0){
             fivecnt--;
@@ -25,10 +26,8 @@ public:
             else
             return false;
         }
-        if(bills[i]==5) fivecnt++;
-        }
-      
-       return true;
-      }
+    
+      }   return true;
+    }
     
 };
