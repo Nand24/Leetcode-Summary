@@ -3,7 +3,7 @@ public:
     bool lemonadeChange(vector<int>& bills) {
         int tencount=0;
         int fivecnt=0;
-      for(auto &it:bills)
+      for(auto it:bills)
       {
         if(it==5) fivecnt++;
         if(it==10)
