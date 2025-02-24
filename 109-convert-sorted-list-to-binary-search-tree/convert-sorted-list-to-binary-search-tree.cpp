@@ -41,12 +41,10 @@ TreeNode* buildTree(ListNode*head)
 {
     if(head==NULL) return NULL ;
     ListNode* mid=middleNode(head);
-    ListNode*lefthead=head;
-    ListNode*righthead=mid->next;
     TreeNode*root =new TreeNode(mid->val);
     if(mid==head) return root;
-    root->left=buildTree(lefthead);
-    root->right=buildTree(righthead);
+    root->left=buildTree(head);
+    root->right=buildTree(mid->next);
     return root;
 }
     TreeNode* sortedListToBST(ListNode* head) {
