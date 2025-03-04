@@ -1,21 +1,30 @@
 class Solution {
 public:
     int candy(vector<int>& ratings) {
+        int i=1;
         int n=ratings.size();
-        vector<int> candies(n,1);
-        for(int i=1;i<ratings.size();i++)
+        int sum=1;
+        while(i<n)
         {
-            if(ratings[i]>ratings[i-1]) candies[i]=candies[i-1]+1;
+             // constant curve ie no inc/dec curve
+            if(ratings[i]==ratings[i-1]){
+                sum++; i++; continue;
+            }
+            // slope is increasing
+            int peak=1;
+            while(i<n && ratings[i]>ratings[i-1])
+            {
+                peak++; sum+=peak; i++;
+            }
+            // slope is decreasing
+            int down=1;
+            while(i<n &&ratings[i]<ratings[i-1])
+            {
+                 sum+=down; i++; down++;
+            }
+            // check if crest is more than trough
+            if(down> peak) sum+=down-peak;
         }
-        for(int i=n-2;i>=0;i--)
-        {
-            if(ratings[i]>ratings[i+1]) candies[i]=max(candies[i],candies[i+1]+1);
-        }
-        int res=0;
-        for(int i=0;i<n;i++)
-        {
-            res+=candies[i];
-        }
-        return res;
+        return sum;
     }
 };
