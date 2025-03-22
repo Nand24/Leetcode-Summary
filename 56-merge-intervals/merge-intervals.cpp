@@ -4,7 +4,7 @@ public:
         vector<vector<int>> res;
         sort(intervals.begin(),intervals.end());
         int start=intervals[0][0]; int end=intervals[0][1];
-        int i=0;
+        int i=1;
         while(i<intervals.size())
         {
              // overlap
