@@ -1,6 +1,6 @@
 class Solution {
 public:
-int  func(int n)
+int  func(int n,vector<int>&dp)
 {
     if(n==1)
     {
@@ -10,10 +10,12 @@ int  func(int n)
     {
         return 0;
     }
-    return func(n-1)+func(n-2);
+    if(dp[n]!=-1) return dp[n];
+    return dp[n]=func(n-1,dp)+func(n-2,dp);
      
 }
     int fib(int n) {
-        return func(n);
+        vector<int> dp(n+1,-1);
+        return func(n,dp);
     }
 };
