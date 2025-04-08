@@ -17,7 +17,7 @@ public:
         int ans=0;
         for(int i=0;i<n;i++)
         {
-            cout<<res[i]<<" ";
+            
             ans+=res[i];
         }
     return ans;
