@@ -6,8 +6,8 @@ public:
         for(int i=1;i<prices.size();i++)
         {
            int currprofit=prices[i]-mini;
-           mini=min(mini,prices[i]);
            maxprofit=max(maxprofit,currprofit);
+                 mini=min(mini,prices[i]);
         }
         return maxprofit;
     }
