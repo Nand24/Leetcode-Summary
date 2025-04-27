@@ -4,7 +4,7 @@ public:
         int cnt=0;
         for(int i=0;i<nums.size();i++)
         {
-            if(i+2<nums.size() && (nums[i]+nums[i+2])==(double)nums[i+1]/2)
+            if(i+2<nums.size() && (nums[i]+nums[i+2])*2==nums[i+1])
             {
                 cnt++;
             }
