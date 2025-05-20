@@ -10,7 +10,7 @@ void dfs(int node,vector<vector<int>>&adj,vector<int>&vis)
             dfs(it,adj,vis);
         }
     }
-    
+    return;
 }
 
     int findCircleNum(vector<vector<int>>& isConnected) {
