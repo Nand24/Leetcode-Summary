@@ -13,12 +13,9 @@ public:
                 int len=r-l+1;
                 maxlen=max(maxlen,len);
             }
-            else
-            {
-                while(zeroes>k) {
-                    if(nums[l]==0) zeroes--;
-                    l++;          
-                }
+            else{
+                if(nums[l]==0) zeroes--;
+                l++;
             }
             r++;
         }
