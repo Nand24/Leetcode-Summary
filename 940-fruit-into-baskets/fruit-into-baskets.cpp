@@ -6,13 +6,14 @@ public:
         int end=0;
         while(end<fruits.size())
         {        mpp[fruits[end]]++;
-                while(mpp.size()>2){
+                if(mpp.size()<=2){
+                     maxlen=max(maxlen,end-start+1);
+                }
+                else{
                     mpp[fruits[start]]--;
                     if(mpp[fruits[start]]==0) mpp.erase(fruits[start]);
                     start++;
-                    
                 }
-                maxlen=max(maxlen,end-start+1);
                 end++;
         }
         return maxlen;
