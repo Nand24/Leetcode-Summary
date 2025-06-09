@@ -11,15 +11,12 @@ public:
                  hash[s[end]-'A']++;
                  maxfreq=max(maxfreq,hash[s[end]-'A']);
                  int len=end-start+1;
-                 if((len-maxfreq)<=k)
-                 {
-                     maxlen=max(maxlen,len);
-                 }
-                 else
+                 if((len-maxfreq)>k)
                  {
                         hash[s[start]-'A']--;
                         start++;
-                 }
+                 }else
+                 maxlen=max(maxlen,len);
                  end++;
         }
         return maxlen;
