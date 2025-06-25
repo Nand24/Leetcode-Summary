@@ -1,50 +1,49 @@
 class Solution {
 public:
     int orangesRotting(vector<vector<int>>& grid) {
-        queue<pair<pair<int, int>, int>> isrotten;
-        int r = grid.size();
-        int c = grid[0].size();
-        int visited[r][c];
-        for (int i = 0; i < grid.size(); i++) {
-            for (int j = 0; j < grid[i].size(); j++) {
+        queue < pair< pair<int,int>, int>> q;
+        vector<vector<int>> vis = grid;
+        int rows = grid.size();
+        int cols = grid[0].size();
+        int di[] = {1, 0, 0, -1};
+        int dj[] = {0, -1, 1, 0};
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
                 if (grid[i][j] == 2) {
-                    isrotten.push({{i, j}, 0});
-                    visited[i][j] = 2;
-                } else
-                    visited[i][j] = 0;
-            }
-        }
-        int time = 0;
-
-        while (!isrotten.empty()) {
-            pair<pair<int, int>, int> p = isrotten.front();
-            isrotten.pop();
-            int row = p.first.first;
-            int col = p.first.second;
-            int t = p.second;
-            time = max(t, time);
-            int delrow[] = {1, 0, 0, -1}; // DLRU
-            int delcol[] = {0, -1, 1, 0}; // DLRU
-            for (int i = 0; i < 4; i++) {
-                int nrow = row + delrow[i];
-                int ncol = col + delcol[i];
-                if (nrow >= 0 && nrow < r && ncol >= 0 && ncol < c &&
-                    grid[nrow][ncol] == 1 && visited[nrow][ncol] !=2 ) {
-                    visited[nrow][ncol] = 2;
-                    isrotten.push({{nrow, ncol}, t + 1});
+                    q.push({{i, j}, 0});
+                    vis[i][j] = 2;
+                } else {
+                    vis[i][j] = 0;
                 }
             }
         }
-        for(int i=0;i<r;i++)
-        {
-            for(int j=0;j<c;j++)
-            {
-                  if(grid[i][j]==1 && visited[i][j]!=2)
-                  {
-                    return -1;
-                  }
+        int time = 0;
+        while (!q.empty()) {
+            int r = q.front().first.first;
+            int c = q.front().first.second;
+            int t = q.front().second;
+            q.pop();
+            time = max(t, time);
+            for (int i = 0; i < 4; i++) {
+                int nr = r + di[i];
+                int nc = c + dj[i];
+                if (nr >= 0 && nr < rows && nc >= 0 && nc < cols &&
+                    grid[nr][nc] == 1 && vis[nr][nc] != 2) {
+                q.push({{nr, nc},t+1});
+                        vis[nr][nc] = 2;
             }
+                }
+            }
+            for(int i=0;i<rows;i++)
+            {
+                for(int j=0;j<cols;j++)
+                {
+                    if(grid[i][j]==1 && vis[i][j]!=2)
+                    {
+                        return -1;
+                    }
+                }
+            }
+            return time;
         }
-        return time;
-    }
-};
+    };
