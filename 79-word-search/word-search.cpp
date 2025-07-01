@@ -6,7 +6,7 @@ void dfs(int sr,int sc,vector<vector<char>>& board,vector<vector<int>>&vis,int i
         found=true;
         return;
     }
-    if(found) return;
+  //  if(found) return;
     vis[sr][sc]=1;
     int di[]={1,0,0,-1};
     int dj[]={0,-1,1,0};
