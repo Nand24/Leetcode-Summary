@@ -11,17 +11,31 @@
  */
 class Solution {
 public:
-void inorder(TreeNode*node,vector<int>&in)
+int count(TreeNode*node)
 {
-    if(node==NULL) return;
-    inorder(node->left,in);
-    in.push_back(node->val);
-    inorder(node->right,in);
+    if(node==NULL) return 0;
+    if(lh(node)==rh(node)) return pow(2,lh(node)) -1;
+    
+    return 1+count(node->left)+count(node->right);
 
 }
+int lh(TreeNode*node)
+{
+    if(node==NULL)
+    {
+       return 0;
+    }
+    return lh(node->left)+1;
+}
+int rh(TreeNode*node)
+{
+    if(node==NULL)
+    {
+       return 0;
+    }
+    return rh(node->right)+1;
+}
     int countNodes(TreeNode* root) {
-        vector<int> in;
-        inorder(root,in);
-        return in.size();
+    return count(root);
     }
 };
