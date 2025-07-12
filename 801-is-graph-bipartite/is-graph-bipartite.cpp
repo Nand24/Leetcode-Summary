@@ -8,16 +8,16 @@ bool dfs(int node,int colour,vector<vector<int>>&graph,vector<int>&col)
             if(col[it]==-1)
             {
                 if(colour==0) {
-                    if(dfs(it,1,graph,col)==true) return true;
+                    if(dfs(it,1,graph,col)==false) return false;
                 }
                 else{
-                   if(dfs(it,0,graph,col)==true) return true;
+                   if(dfs(it,0,graph,col)==false) return false;
                 }
             }
-            else if(col[it]==colour) return true;
+            else if(col[it]==colour) return false;
 
         }
-        return false;
+        return true;
 }
     bool isBipartite(vector<vector<int>>& graph) {
        vector<int>col(graph.size(),-1);
@@ -25,7 +25,7 @@ bool dfs(int node,int colour,vector<vector<int>>&graph,vector<int>&col)
        {
         if(col[i]==-1)
         {
-            if(dfs(i,0,graph,col)==true) return false;
+            if(dfs(i,0,graph,col)==false) return false;
         }
        }
        return true;
