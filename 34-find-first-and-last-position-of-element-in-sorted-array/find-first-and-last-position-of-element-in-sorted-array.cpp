@@ -1,48 +1,54 @@
 class Solution {
 public:
-int ub(vector<int>&arr,int n,int x)
+int last_occur(vector<int>&nums,int n,int target)
 {
-    int ans=n;
     int low=0;
     int high=n-1;
+    int last=-1;
     while(low<=high)
     {
         int mid=(low+high)/2;
-        if(arr[mid]>x)
+
+        if(nums[mid]==target)
         {
-            ans=mid;
+            last=mid;
+            low=mid+1;
+        }
+        else if(nums[mid]<target)
+        {
+            low=mid+1;
+        }
+        else{
             high=mid-1;
         }
-        else{
+    }
+    return last;
+}
+int first_occur(vector<int>&nums,int n,int target)
+{
+    int low=0;
+    int high=n-1;
+    int first=-1;
+    while(low<=high)
+    {
+        int mid=(low+high)/2;
+
+        if(nums[mid]==target)
+        {
+            first=mid;
+            high=mid-1;
+        }
+       else if(nums[mid]<target)
+        {
             low=mid+1;
+        }
+        else{
+            high=mid-1;
         }
     }
-    return ans;
-}
-int lb(vector<int>&arr,int n, int x)
-{
-    int ans=-1;
-     int low=0;
-     int high=n-1;
-     while(low<=high)
-     {
-        int mid=(low+high)/2;
-        if(arr[mid]>=x)
-        {
-           ans=mid;
-           high=mid-1;
-        }
-        else{
-            low=mid+1;
-        }
-     }
-     return ans;
+    return first;
 }
     vector<int> searchRange(vector<int>& nums, int target) {
-        int n=nums.size();
-        int lower=lb(nums,n,target);
-        int upper=ub(nums,n,target) -1;
-         if( lower==-1 ||  nums[lower]!=target ) return{-1,-1};
-         else return {lower,upper};
+        return {first_occur(nums,nums.size(),target),last_occur(nums,nums.size(),target)};
     }
 };
