@@ -1,28 +1,32 @@
 class Solution {
 public:
-void BS(int low,int high,vector<int>&piles,int h,int &ans)
+int func(int k,vector<int>&piles,int h)
 {
-    if(low>high) return;
-    int mid=(low+high)/2;
-   long long int temp=0;
+    int ans=0;
     for(int i=0;i<piles.size();i++)
     {
-       temp+=ceil((double)(piles[i])/mid);
+        ans+=ceil(double(piles[i])/k);
+        if(ans>h) return 2;
+
     }
-if(temp<=h)
-{
-    ans=min(ans,mid);
-    BS(low,mid-1,piles,h,ans);
-}
-else
-{
-    BS(mid+1,high,piles,h,ans);
-}
+    if(ans<=h) return 1;
+
+return -1;
 }
     int minEatingSpeed(vector<int>& piles, int h) {
-        int ans=INT_MAX;
+        int low=1; // minimum no of bananas per hour
         int high=*max_element(piles.begin(),piles.end());
-  BS(1,high,piles,h,ans);
-  return ans;      
+        while(low<=high)
+        {
+            int mid=(low+high)/2;
+
+            int val=func(mid,piles,h);
+
+            if(val==1) high=mid-1;
+            if(val==2) low=mid+1;
+       
+           
+        }
+        return low;
     }
 };
