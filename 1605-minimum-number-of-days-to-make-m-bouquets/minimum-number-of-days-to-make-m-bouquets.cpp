@@ -31,7 +31,7 @@ int func(int mid,int k,int m,vector<int>&bloomDay)
                 // l=r;
             }
         }
-    if(cnt==m) return 1;
+  //  if(cnt==m) return 1;
     return 0;
         
 }
