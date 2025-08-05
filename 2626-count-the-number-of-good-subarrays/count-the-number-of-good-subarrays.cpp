@@ -12,18 +12,20 @@ public:
            
            while(paircnt <k && r<nums.size() ){
                  
-            
-                  paircnt+=mpp[nums[r]];
                   mpp[nums[r]]++;
-                 r++;
+                  if(mpp[nums[r]]>1) paircnt+=mpp[nums[r]]-1;
+                  r++;
 
            }
             if(paircnt>=k){
                     ans+=n-r+1;
                  }
           
-           mpp[nums[l]]--;
-            paircnt-=mpp[nums[l]];
+         
+           if(mpp[nums[l]]>1)
+            paircnt-=mpp[nums[l]]-1;
+
+              mpp[nums[l]]--;
            l++;
         }
         return ans;
